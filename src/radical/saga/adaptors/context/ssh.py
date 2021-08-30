@@ -155,7 +155,7 @@ class Adaptor (base.Base):
 
 
                 import subprocess
-                if  not subprocess.call (["sh", "-c", "grep ENCRYPTED %s > /dev/null" % key]) :
+                if  not subprocess.call (["/bin/sh", "-c", "grep ENCRYPTED %s > /dev/null" % key]) :
                     # needs passphrase.  Great, actually, but won't work for
                     # default contexts as long as we can't prompt for pass
                     # phrases...
@@ -290,9 +290,9 @@ class ContextSSH (cpi.Context) :
 
 
         import subprocess
-        if  not subprocess.call (["sh", "-c", "grep ENCRYPTED %s > /dev/null" % key]) :
+        if  not subprocess.call (["/bin/sh", "-c", "grep ENCRYPTED %s > /dev/null" % key]) :
             if  pwd  :
-                if  subprocess.call (["sh", "-c", "ssh-keygen -y -f %s -P '%s' > /dev/null" % (key, pwd)]) :
+                if  subprocess.call (["/bin/sh", "-c", "ssh-keygen -y -f %s -P '%s' > /dev/null" % (key, pwd)]) :
                     raise PermissionDenied ("ssh key '%s' is encrypted, incorrect password" % (key))
             else :
                 self._logger.error ("ssh key '%s' is encrypted, unknown password" % (key))
