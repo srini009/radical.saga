@@ -604,8 +604,8 @@ class SLURMJobService(cpi_job.Service):
 
             if 'traverse' in self.rm.host.lower():
                 # NOTE: this hardcodes the job for a specific application layout
-                script += "#SBATCH --cpus_per_task=4\n"
-                script += "#SBATCH --ntasks_per_core=1\n"
+                script += "#SBATCH --cpus-per-task=4\n"
+                script += "#SBATCH --ntasks-per-core=1\n"
 
             elif not processes_per_host:
                 script += "#SBATCH --cpus-per-task=%s\n" \
